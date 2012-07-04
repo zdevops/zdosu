@@ -1,4 +1,5 @@
 zdosu
 =====
 
-The *real* SUDO for the Mainframe
+Head on over to GitHub pages for the docs
+http://zdevops.github.com/zdosu/
