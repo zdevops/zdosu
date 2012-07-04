@@ -169,30 +169,6 @@ urge you always download sources from the GitHub repository.</p>
 ZDOSULG  WTO   'ZD0000I : EXECUTION STARTED!',ROUTCDE=(9)
 ZDOSU00  RACROUTE REQUEST=AUTH,WORKA=WA,ENTITYX=ENTITYX,RELEASE=1.9,   *
                ATTR=READ,CLASS='FACILITY',MSGSUPP=NO
-         CH    15,=H'4'                IS THE RESNAME DEFINED ?
-         BE    ZDOSUE2                  EEK! THROW AN ERROR!
-         LTR   15,15                   OTHER NONZERO RETURN CODE ?
-         BNZ   ZDOSUE3                 YES - RACF TOLD WHY, LEAVE PROG
-         L     2,X'224'                GET THE
-         L     2,ASCBASXB-ASCB(2)       POINTER
-         L     2,ASXBSENV-ASXB(2)        TO THE ACEE
-         MODESET KEY=ZERO              MOVE INTO KEY ZERO!
-         CLC   0(4,3),=C'SPEC'         REQUESTING SPECIAL?
-         BNE   ZDOSUOP                  (NOPE)
-         OI    ACEEFLG1-ACEE(2),ACEESPEC       * ADD SPECIAL
-         B     ZDOSUXX
-ZDOSUOP  CLC   0(4,3),=C'OPER'                 * ADD OPERATIONS?
-         BNE   ZDOSURS                           (NOPE)
-         OI    ACEEFLG1-ACEE(2),ACEEOPER       * ADD OPER
-         B     ZDOSUXX
-ZDOSURS  CLC   0(6,3),=C'NOSPEC'               * REMOVE SPECIAL?
-         BNE   ZDOSURO                           (NOPE)
-         NI    ACEEFLG1-ACEE(2),255-ACEESPEC
-         B     ZDOSUXX
-ZDOSURO  CLC   0(6,3),=C'NOOPER'               * REMOVE OPERATIONS?
-         BNE   ZDOSUXX
-         NI    ACEEFLG1-ACEE(2),255-ACEEOPER
-ZDOSUXX  MODESET KEY=NZERO
 RETURN   PR                            POP REGISTERS AND RETURN
 ZDOSUE1  WTO   'ZDO1000E : PARAMETER ERROR',ROUTCDE=(11)
          LA    15,4
@@ -209,9 +185,6 @@ ZDOSUE3  WTO   'ZDO3000E : USAGE NOT PERMITTED',ROUTCDE=(11)
 WA       DS    CL512
 ENTITYX  DC    H'0',H'14',C'ZDEVOPS.'
 RESSUF   DC    CL5'AUTH.*'
-         IHAACEE
-         IHAASCB
-         IHAASXB
          END   ZDOSU
 </code></pre>
 
