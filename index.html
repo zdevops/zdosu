@@ -14,7 +14,7 @@
   </head>
   <body><a href="https://github.com/zdevops/zdosu"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub"></a>
 	  <div class="wrapper">
-		  <img src="http://zdevops.com/img/mainframe.png" style="position: absolute; top: 110; right: 0; border: 0;"/>
+		  <img width=15% src="http://zdevops.com/img/mainframe.png" style="position: absolute; top: 100; right: 50px; border: 0;"/>
 
 		  <h1>Isn't it awesome being special?</h1>
 <h2>With great power there must also come ... great responsibility!</h2>
@@ -155,7 +155,7 @@ guide to using the module</p>
 <h3>Inside scoop</h3>
 So how is it done? ZDOSU is written in ASSEMBLY and therefor extremely awesome and efficient.
 You can easily head on over to the repository at GitHub and awe at the code there.
-Below you will find the source to ZDOSU too. This however might not be the latest version. We
+Below you will find some snippets from the source. This will most likely be parsed succesfully by ASMA90, however it is not the not full version. We
 urge you always download sources from the GitHub repository.</p>
 
 <p>That being said, here's the code :<br />
@@ -189,17 +189,20 @@ ENTITYX  DC    H'0',H'14',C'ZDEVOPS.'
 RESSUF   DC    CL5'AUTH.*'
          END   ZDOSU
 </code></pre>
-
+<h2>Wrapping it up</h2>
+<p>Seeing as you've read all the way past the source-code we will get a bit more nerdy on the whole z/OS thing. Every address space succesfully executing ZDOSU (with PARM='SPECIAL') will have it's "SPECIAL" flag waving in the wind. There's virtually nothing this address space cannot do......</p>
+<p>By walking down the ASXB tree we can end up at the ACEE and flip some bits in that area.</p>
+<img src="http://publib.boulder.ibm.com/infocenter/zos/v1r11/topic/com.ibm.zos.r11.ichb200/ichb2g23.gif" width=500 /> 
+<p>Before the program decides to flip some bits, it first issues a RACROUTE to test if the current user has READ on ZDEVOPS.AUTH.* in the facility class. It also checks if there's an argument of at least 6 bytes (SPECIA,OPERAT,NOSPEC,NOOPER). And even before all this has happend a message was written to SYSLOG (route code 9) providing information for an audit trail regarding incivations of the progam. After that, it's a piece of pie.</p>
 <p><small>
-	  This project is maintained by <a href="https://github.com/zdevops">zdevops</a>. This doucumentation is proudly 
-        hosted on GitHub Pages &mdash; Theme based on work by <a href="https://github.com/orderedlist">orderedlist</a>.zdevops does not accept any liability as a result of implementing this functionalty.
+	  This GitHub repository is part of a project maintained by <a href="http://zdevops.com">zdevops.com</a>. This doucumentation is proudly 
+        hosted on GitHub Pages &mdash; Theme based on work by <a href="https://github.com/orderedlist">orderedlist</a>.We do not accept any liability as a result of implementing this functionalty. You have been warned.<br />
 		</small></p> 
     <script src="javascripts/scale.fix.js"></script>
+</p>
 <script type="text/javascript">
-            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-            var disqus_shortname = 'zdosubyzdevops'; // required: replace example with your forum shortname
+            var disqus_shortname = 'zdosubyzdevops';
 
-            /* * * DON'T EDIT BELOW THIS LINE * * */
             (function() {
                 var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
                 dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
@@ -222,5 +225,19 @@ RESSUF   DC    CL5'AUTH.*'
 			    	              })();
 
 							  </script>
+     <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'zdosubyzdevops'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var s = document.createElement('script'); s.async = true;
+            s.type = 'text/javascript';
+            s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+        </script>
+<br /><br /><br />
+<p><small><strong>this is part of zdevops.com course material</strong></p>
   </body>
 </html>
