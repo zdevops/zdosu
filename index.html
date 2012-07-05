@@ -23,8 +23,8 @@ Sometimes it's to be able to restore data you are not authorized for by default,
 At other times it's just to perform some rudimentary <i>display commands</i> or install or configure some product.</p>
 <p>At most shops security on The Mainframe is <i>very tight</i>. At some sites Systems Programmers are not allowed to be "SPECIAL" or "OPERATIONS".
 This mostly means only the security guys are authorized to change security settings, resulting in tedious and longer turn-around times for projects than need be.
-(Depending on the competence level of your security guys your milage may vary). On the other hand, if your shop has a setup where *you* the Systems Programmer is
-entitled to be "SPECIAL" this means you *always* have FULL AUTHORITY on the system, making you have to think twice before doing anything, because you're hardly ever 
+(Depending on the competence level of your security guys your milage may vary). On the other hand, if your shop has a setup where *you* the Systems Programmer are 
+entitled to be "SPECIAL" this means you *always* have FULL AUTHORITY on the system, making you think twice before doing anything, because you're hardly ever 
 blocked by security settings. This may result in unwanted (and mostly unplanned) results.<p>
 <h2>A committee is a group that keeps minutes and loses hours</h2>
 <p>Why not have both? We at zdevops firmly believe a Systems Programmer needs to be "SPECIAL" or "OPERATIONS" from time to time.
@@ -57,7 +57,7 @@ there are a couple of requirements that need to be fullfilled before you can sta
 	<li><strong>Are you sure you want to implement this?</strong><br />
 	You might want to talk about this with your manager, your CEO/CFO/CTO or even your security guys.
 	This 'tool' potentially creates an enourmous back-door into your sites security mechanisms. 
-	We know it's only with good intent, but it will never harm to have some 'managerial backing' on this.</li>
+	We know it's only with good intent, but it wouldn't hurt to have some 'managerial backing' on this.</li>
 	<li><strong>Access to SPECIAL</strong></br />
 	Due to the nature of this module (it does alter storage in KEY ZERO) it
 	needs to run in <a href="http://en.wikipedia.org/wiki/Supervisor_Call_instruction" target="_blank">Supervisor State</a>, hence it
@@ -67,7 +67,7 @@ there are a couple of requirements that need to be fullfilled before you can sta
 	<li><strong>RACF</strong><br />
 	This module has been coded with RACF in mind. If you shop uses "TopSecret" or "ACF2" it will not run.
 	The good thing about open-sourcing this module is, there might be someone out there running ACF2 and
-	altering the source so it will work with ACF2 too :)</li>
+	altering the source so it will work with ACF2 too.</li>
 	<li><strong>SMP/e</strong><br />
 	In order to 'install' this feature you need to have some basic SMP/e knwoledge as this module is
 	provided as 'USERMOD'. We do also provide you with the source (scroll down) so you can build it
@@ -86,7 +86,7 @@ Change the JOBCARD and submit the job. It's #EPLS</p>
 <p>As stated, this module requires RACF authorization to perform it's magic.
 This 'functionality' is there for a reason. Without it any user(!!) could
 upgrade himself to become "SPECIAL". Because this just give us shivers down 
-our spine, we require user to have read to 'ZDEVOPS.AUTH.*' in the FACILITY class.
+our spine, we require users to have read to the 'ZDEVOPS.AUTH.*' profile  in the FACILITY class.
 In order to grant a user (or group) access to the module you need to PERMIT them to
 the resource. An example is shown below:
 <pre><code>/* Define the profile */
@@ -153,7 +153,7 @@ User has no access to ZDEVOPS.AUTH.* in FACILITY-class. Module terminates.
 guide to using the module</p>
 
 <h3>Inside scoop</h3>
-So how is it done? ZDOSU is written in ASSEMBLY and therefor extremely awesome and efficient.
+So how is it done? ZDOSU is written in ASSEMBLY and therefore extremely awesome and efficient.
 You can easily head on over to the repository at GitHub and awe at the code there.
 Below you will find some snippets from the source. This will most likely be parsed succesfully by ASMA90, however it is not the not full version. We
 urge you always download sources from the GitHub repository.</p>
@@ -200,6 +200,7 @@ RESSUF   DC    CL5'AUTH.*'
 		</small></p> 
     <script src="javascripts/scale.fix.js"></script>
 </p>
+<div id="disqus_thread"></div>
 <script type="text/javascript">
             var disqus_shortname = 'zdosubyzdevops';
 
