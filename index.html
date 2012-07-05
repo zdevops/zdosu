@@ -69,17 +69,47 @@ there are a couple of requirements that need to be fullfilled before you can sta
 	altering the source so it will work with ACF2 too.</li>
 	<li><strong>SMP/e</strong><br />
 	In order to 'install' this feature you need to have some basic SMP/e knwoledge as this module is
-	provided as 'USERMOD'. We do also provide you with the source (scroll down) so you can build it
+	provided as a 'USERMOD'. We do also provide you with the source (scroll down) so you can build it
 	yourself, outside of SMP/e. (example JCL is provided).</li>
 </ol>
 </ul>
 <h2>Installing via SMP/e</h2>
-<p>Head on over to our repository on github and download ZDO45000 from the SMPE directory.
-From there on you should upload this to your Mainframe and perform a regular APPLY.</p>
+<p>Head on over to our repository on github and download ZDO1207 from the SMPE directory. Don't worry, we will hardly release more than one USERMOD per month, so you're save with the naming convention we use. Once you've downloaded the USERMOD you need to upload it to your Mainframe. </p>
+<p>Once uploaded to your Mainframe (make sure to send it ASCII, and place it in FB 80 dataset) you need to RECEIVE and APPLY it.</p>
+<h3>Performing the receive</h3>
+<p>For some of us there are no secrets within SMP/e, others just copy and paste 
+from existing jobs. To make sure this 'documentation' is as complete as possiblewe present you with the following JCL.</p>
+<pre><code>//S1          EXEC PGM=GIMSMP,
+//            PARM='PROCESS=WAIT',
+//            REGION=0M,
+//            DYNAMNBR=120
+//SMPCS1   DD DSN=LOCATION.OF.YOUR.CSI,
+//            DISP=SHR
+//SMPCNTL  DD *
+  SET BOUNDARY (GLOBAL).
+  RECEIVE SYSMODS SELECT(ZDO1207).
+//SMPPTFIN DD DSN=LOCATION.WHERE.YOU.UPLOADED,
+//            DISP=(SHR,KEEP) 
+</code></pre>
+<p>If all goes well, this job should return with messages like these :
+<pre><code>GIM22701I    RECEIVE PROCESSING WAS SUCCESSFUL FOR SYSMOD ZDO1207.
+GIM20501I    RECEIVE PROCESSING IS COMPLETE. THE HIGHEST RETURN CODE WAS 00.</code></pre>
 
+<h3>Applying the usermod</h3>
+Once succesfully received all you need to do is APPLY the USERMOD. Yet again we need to put GIMSMP to work. The following JCL serves as an example.
+<pre><code>//S1          EXEC PGM=GIMSMP,
+//            PARM='PROCESS=WAIT',
+//            REGION=0M,
+//            DYNAMNBR=120
+//SMPCS1   DD DSN=LOCATION.OF.YOUR.CSI,
+//            DISP=SHR
+//SMPCNTL  DD *
+  SET BOUNDARY (TARGETZONE).
+  APPLY SELECT(ZDO1207) RETRY(YES).
+</code></pre>
 <h2>Installing via JCL</h2>
 <p>Again, head on over to our repository on GitHub and this time download INSTALL from the JCL directory.
-Change the JOBCARD and submit the job. It's #EPLS</p>
+Add a JOBCARD and submit the job. It's #EPLS</p>
 
 <h2>Allowing users or groups to execute the module</h2>
 <p>As stated, this module requires RACF authorization to perform it's magic.
