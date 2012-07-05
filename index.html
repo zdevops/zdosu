@@ -192,7 +192,6 @@ RESSUF   DC    CL5'AUTH.*'
 <h2>Wrapping it up</h2>
 <p>Seeing as you've read all the way past the source-code we will get a bit more nerdy on the whole z/OS thing. Every address space succesfully executing ZDOSU (with PARM='SPECIAL') will have it's "SPECIAL" flag waving in the wind. There's virtually nothing this address space cannot do......</p>
 <p>By walking down the ASXB tree we can end up at the ACEE and flip some bits in that area.</p>
-<img src="http://publib.boulder.ibm.com/infocenter/zos/v1r11/topic/com.ibm.zos.r11.ichb200/ichb2g23.gif" width=500 /> 
 <p>Before the program decides to flip some bits, it first issues a RACROUTE to test if the current user has READ on ZDEVOPS.AUTH.* in the facility class. It also checks if there's an argument of at least 6 bytes (SPECIA,OPERAT,NOSPEC,NOOPER). And even before all this has happend a message was written to SYSLOG (route code 9) providing information for an audit trail regarding incivations of the progam. After that, it's a piece of pie.</p>
 <p><small>
 	  This GitHub repository is part of a project maintained by <a href="http://zdevops.com">zdevops.com</a>. This doucumentation is proudly 
