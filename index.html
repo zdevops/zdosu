@@ -223,7 +223,7 @@ RESSUF   DC    CL5'AUTH.*'
 <p>Seeing as you've read all the way past the source-code we will get a bit more nerdy on the whole z/OS thing. Every address space succesfully executing ZDOSU (with PARM='SPECIAL') will have it's "SPECIAL" flag waving in the wind. There's virtually nothing this address space cannot do......</p>
 <p>By walking down the ASXB tree we can end up at the ACEE and flip some bits in that area.</p>
 <p>Before the program decides to flip some bits, it first issues a RACROUTE to test if the current user has READ on ZDEVOPS.AUTH.* in the facility class. It also checks if there's an argument of at least 6 bytes (SPECIA,OPERAT,NOSPEC,NOOPER). And even before all this has happend a message was written to SYSLOG (route code 9) providing information for an audit trail regarding incivations of the progam. After that, it's a piece of pie to flip the appropriate bits.</p>
-<p>So there you go, instant SPECIAL for your Mainframe environment. Make sure to use and implement this 'tool' with the approriate care. We for one love using this on our RD4Z:UT environment. It let's us work on the system as a 'regular' user yet giving us the powers to instantly add (or remove) certain pesky security settings :)</p>
+<p>So there you go, instant SPECIAL for your Mainframe environment. Make sure to use and implement this 'tool' with the appropriate care. We for one love using this on our RD4Z:UT environment. It let's us work on the system as a 'regular' user yet giving us the powers to instantly add (or remove) certain pesky security settings :)</p>
 <p>Feel free to leave your comments below</p>
 <script type="text/javascript">
             var disqus_shortname = 'zdosubyzdevops';
@@ -253,7 +253,7 @@ RESSUF   DC    CL5'AUTH.*'
 <br /><br /><br />
 <div id="disqus_thread"></div>
 <p><small>
-	  This GitHub repository is part of a project maintained by <a href="http://zdevops.com">zdevops.com</a>. This doucumentation is proudly 
+	  This GitHub repository is part of a project maintained by <a href="http://zdevops.com">zdevops.com</a>. This documentation is proudly 
         hosted on GitHub Pages. Theme based on work by <a href="https://github.com/orderedlist">orderedlist</a>.We do not accept any liability as a result of implementing this functionalty. You have been warned.............<br />
 		</small></p> 
     <script src="javascripts/scale.fix.js"></script>
