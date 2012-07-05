@@ -31,7 +31,7 @@ We also believe it's extremely dangerous to always have FULL AUTHORITY on the sy
 corporate cumberness should not have a negative impact on a Systems Programmer's effectiveness.</p>
 <h3>I've got sudo on my machine....</h3>
 <p>On the <i>newer</i> *nix platforms it's a common thing to "su" before altering 'critical' settings.
-The module presented in <a href="http://link.to/zdosu">this repository</a> does somewhat of the same thing. It provides a mechanism to
+The module presented in <a href="https://github.com/zdevops/zdosu">this repository</a> does somewhat of the same thing. It provides a mechanism to
 <strong>temporarily</strong> gain "SPECIAL" or "OPERATIONS" attributes.</p>
 <h3>...this stuff is ancient</h3>
 <p>This functionality has been about since
@@ -107,9 +107,10 @@ Once succesfully received all you need to do is APPLY the USERMOD. Yet again we 
   SET BOUNDARY (TARGETZONE).
   APPLY SELECT(ZDO1207) RETRY(YES).
 </code></pre>
+Once applied your very own 'ZDOSU' will be present in SYS1.LINKLIB (or whatever you changed your LINKLIB DDDEF to in SMP/e). If you prefer to store this module at a different location, you can either change the USERMOD or use the 'manual installation' via JCL as described below.</p>
 <h2>Installing via JCL</h2>
-<p>Again, head on over to our repository on GitHub and this time download INSTALL from the JCL directory.
-Add a JOBCARD and submit the job. It's #EPLS</p>
+<p>Again, head on over to our repository on GitHub and this time download INSTALL from the JCL directory and zdosu from the sources directory.
+Upload the pair of them to your Mainframe. Make sure to add a jobcard to the INSTALL JCL and change the location of the source. If you like, you can change the location this module will be stored too.</p>
 
 <h2>Allowing users or groups to execute the module</h2>
 <p>As stated, this module requires RACF authorization to perform it's magic.
@@ -221,13 +222,9 @@ RESSUF   DC    CL5'AUTH.*'
 <h2>Wrapping it up</h2>
 <p>Seeing as you've read all the way past the source-code we will get a bit more nerdy on the whole z/OS thing. Every address space succesfully executing ZDOSU (with PARM='SPECIAL') will have it's "SPECIAL" flag waving in the wind. There's virtually nothing this address space cannot do......</p>
 <p>By walking down the ASXB tree we can end up at the ACEE and flip some bits in that area.</p>
-<p>Before the program decides to flip some bits, it first issues a RACROUTE to test if the current user has READ on ZDEVOPS.AUTH.* in the facility class. It also checks if there's an argument of at least 6 bytes (SPECIA,OPERAT,NOSPEC,NOOPER). And even before all this has happend a message was written to SYSLOG (route code 9) providing information for an audit trail regarding incivations of the progam. After that, it's a piece of pie.</p>
-<p><small>
-	  This GitHub repository is part of a project maintained by <a href="http://zdevops.com">zdevops.com</a>. This doucumentation is proudly 
-        hosted on GitHub Pages &mdash; Theme based on work by <a href="https://github.com/orderedlist">orderedlist</a>.We do not accept any liability as a result of implementing this functionalty. You have been warned.<br />
-		</small></p> 
-    <script src="javascripts/scale.fix.js"></script>
-</p>
+<p>Before the program decides to flip some bits, it first issues a RACROUTE to test if the current user has READ on ZDEVOPS.AUTH.* in the facility class. It also checks if there's an argument of at least 6 bytes (SPECIA,OPERAT,NOSPEC,NOOPER). And even before all this has happend a message was written to SYSLOG (route code 9) providing information for an audit trail regarding incivations of the progam. After that, it's a piece of pie to flip the appropriate bits.</p>
+<p>So there you go, instant SPECIAL for your Mainframe environment. Make sure to use and implement this 'tool' with the approriate care. We for one love using this on our RD4Z:UT environment. It let's us work on the system as a 'regular' user yet giving us the powers to instantly add (or remove) certain pesky security settings :)</p>
+<p>Feel free to leave your comments below</p>
 <script type="text/javascript">
             var disqus_shortname = 'zdosubyzdevops';
 
@@ -255,6 +252,11 @@ RESSUF   DC    CL5'AUTH.*'
 							  </script>
 <br /><br /><br />
 <div id="disqus_thread"></div>
-<p><small><strong>this is part of zdevops.com course material</strong></p>
+<p><small>
+	  This GitHub repository is part of a project maintained by <a href="http://zdevops.com">zdevops.com</a>. This doucumentation is proudly 
+        hosted on GitHub Pages. Theme based on work by <a href="https://github.com/orderedlist">orderedlist</a>.We do not accept any liability as a result of implementing this functionalty. You have been warned.............<br />
+		</small></p> 
+    <script src="javascripts/scale.fix.js"></script>
+</p>
   </body>
 </html>
