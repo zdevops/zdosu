@@ -35,14 +35,14 @@ The module presented in <a href="https://github.com/zdevops/zdosu">this reposito
 <strong>temporarily</strong> gain "SPECIAL" or "OPERATIONS" attributes.</p>
 <h3>...this stuff is ancient</h3>
 <p>This functionality has been about since
-the start of time (epoch-wise at least I'd say) and we at zdevops.com are by no means trying to claim credit for it.
+the start of time (epoch-wise at least I'd say) and we at zdevops.com are by no means trying to claim credit for it. We're not dropping any names here, but references to code like this were made at the turn of the century. This data is still available at the CBT site.
 We're merely expanding and sharing things thought of by others because, quite frankly, we don't want to see this
 information lost. And judging by the ever increasing average age of the Mainframe Systems Programmers chances are this knowledge
 might get lost in time forever.</p>
 <h2>What does it do?</h2>
 Basically this module will add or remove "SPECIAL" or "OPERATIONS" attributes from your 'current session'.
 Because of the extreme consequences this might have RACF is used to permit 
-usage of this module. Without the proper PERMIT this program does hardly anything more than 
+usage of this module. Without the proper PERMIT this program does virtually less than  
 <a href="http://en.wikipedia.org/wiki/IEFBR14" target="_blank">IEFBR14</a>.
 With the proper authorization however, this module will grant the caller with the powers of 
 "SPECIAL" and/or "OPERATIONS". And we all know the famous Stan Lee quote when it comes to
@@ -106,7 +106,7 @@ Once succesfully received all you need to do is APPLY the USERMOD. Yet again we 
   SET BOUNDARY (TARGETZONE).
   APPLY SELECT(ZDO1207) RETRY(YES).
 </code></pre>
-Once applied your very own 'ZDOSU' will be present in SYS1.LINKLIB (or whatever you changed your LINKLIB DDDEF to in SMP/e). If you prefer to store this module at a different location, you can either change the USERMOD or use the 'manual installation' via JCL as described below.</p>
+Once applied your very own 'ZDOSU' will be present in SYS1.LINKLIB (or whatever you changed your LINKLIB DDDEF to in SMP/e). If you prefer to store this module at a different location, you can either change the USERMOD or use the source file (as provided in the repo) and build your own 'compile & link' JCL.</p>
 <h2>Allowing users or groups to execute the module</h2>
 <p>As stated, this module requires RACF authorization to perform it's magic.
 This 'functionality' is there for a reason. Without it any user(!!) could
@@ -152,7 +152,7 @@ AUTHPGM NAMES(            /* AUTHORIZED PROGRAMS */ +
 Due to the potential dangerous effect as a result of using this module every invocation of the program will be logged in SYSLOG.
 
 This is message <strong>ZDOSU0000I : EXECUTION STARTED</strong>.<br />
-From SYSLOG one can determine the originating TSO address space, providing you with an audit trail to the executing user.</p>
+From SYSLOG one can determine the originating address space, providing you with a basic audit trail towards the executing user.</p>
 <p>There are however a couple more messages this module can generate. For completeness sake all of them are provided below.
 <pre><code><strong>ZDOSU0000I : EXECUTION STARTED</strong>
 This message is written to SYSLOG only and indicates usage of the module.
