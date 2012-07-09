@@ -1,84 +1,159 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>zdosu by zdevops</title>
+<!DOCTYPE html>
+<!--
+zdevops - zdosu
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
+                    (`'`'`'`'`)
+                     |       |
+                     |       |
+                     |       |
+    -----..        (()----   |
+   |        ||     (_        |
+   |        ||       |       |
+   |        ||       |       |
+   |        ||       /\   ..--
+   '--------''   /\  ||-''    \
+      /   \      \ \//   ,,   \---.
+   .---------.    \./ |~| /__\  \  |
+___|_________|__|''-.___ / ||   |  |
+|               | .-----'  ||   |  |
+|               |CC.-----.      |  |
+|               |  '-----'      |  |
+                                |  |
+    
+Go ahead. Snoop around! If you think I should fix something, let met know :)
+
+-->
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="description" content="The full documentation to zdoso, a module for z/OS providing native z/OS 'su'-like capabilities.">
+<meta name="keywords" content="z/OS, security, su, sudo, authorization, usermod, zdevops, zdosu, ZDO1207">
+<meta name="author" content="metatags generator">
+<meta name="robots" content="index, follow">
+<meta name="revisit-after" content="3 month">
+<title>zdosu by zdevops</title>
+<link rel="stylesheet" href="stylesheets/styles.css" type=
+"text/css">
+<link rel="stylesheet" href="stylesheets/pygment_trac.css"
+      type="text/css">
+<meta name="viewport" content=
+"width=device-width, initial-scale=1, user-scalable=no">
+<!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-  </head>
-  <body><a href="https://github.com/zdevops/zdosu"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub"></a>
-	  <div class="wrapper">
-
-		  <h1>ZDOSU : Isn't it awesome being special?</h1>
-<h2>With great power there must also come ... great responsibility!</h2>
-<p>As a professional Mainframe Systems Programmer one needs extreme authorizations on the system from time to time.
-Sometimes it's to be able to restore data you are not authorized for by default, sometimes it's so you can add some security settings.
-At other times it's just to perform some rudimentary <i>display commands</i> or install or configure some product.</p>
-<p>At most shops security on The Mainframe is <i>very tight</i>. At some sites Systems Programmers are not allowed to be "SPECIAL" or "OPERATIONS".
-This mostly means only the security guys are authorized to change security settings, resulting in tedious and longer turn-around times for projects than need be.
-(Depending on the competence level of your security guys your milage may vary). On the other hand, if your shop has a setup where you the Systems Programmer are 
-entitled to be "SPECIAL" this means you always have FULL AUTHORITY on the system, making you think twice before doing anything, because you're hardly ever 
-blocked by security settings. This may result in unwanted (and mostly unplanned) results.<p>
+</head>
+<body>
+<a href="https://github.com/zdevops/zdosu"><img style=
+"position: absolute; top: 0; right: 0; border: 0;" src=
+"https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"
+     alt="Fork me on GitHub"></a> 
+<div class="wrapper">
+<h1>ZDOSU : Isn't it awesome being special?</h1>
+<h2>With great power there must also come ... great
+responsibility!</h2>
+<p>As a professional Mainframe Systems Programmer one needs extreme
+authorizations on the system from time to time. Sometimes it's to
+be able to restore data you are not authorized for by default,
+sometimes it's so you can add some security settings. At other
+times it's just to perform some rudimentary <i>display commands</i>
+or install or configure some product.</p>
+<p>At most shops security on The Mainframe is <i>very tight</i>. At
+some sites Systems Programmers are not allowed to be "SPECIAL" or
+"OPERATIONS". This mostly means only the security guys are
+authorized to change security settings, resulting in tedious and
+longer turn-around times for projects than need be. (Depending on
+the competence level of your security guys your milage may vary).
+On the other hand, if your shop has a setup where you the Systems
+Programmer are entitled to be "SPECIAL" this means you always have
+FULL AUTHORITY on the system, making you think twice before doing
+anything, because you're hardly ever blocked by security settings.
+This may result in unwanted (and mostly unplanned) results.</p>
 <h2>A committee is a group that keeps minutes and loses hours</h2>
-<p>Why not have both? We at zdevops firmly believe a Systems Programmer needs to be "SPECIAL" or "OPERATIONS" from time to time.
-We also believe it's extremely dangerous to always have FULL AUTHORITY on the system. But we also think procedures and
-corporate cumberness should not have a negative impact on a Systems Programmer's effectiveness.</p>
+<p>Why not have both? We at zdevops firmly believe a Systems
+Programmer needs to be "SPECIAL" or "OPERATIONS" from time to time.
+We also believe it's extremely dangerous to always have FULL
+AUTHORITY on the system. But we also think procedures and corporate
+cumberness should not have a negative impact on a Systems
+Programmer's effectiveness.</p>
 <h3>I've got sudo on my machine....</h3>
-<p>On the <i>newer</i> *nix platforms it's a common thing to "su" before altering 'critical' settings.
-The module presented in <a href="https://github.com/zdevops/zdosu">this repository</a> does somewhat of the same thing. It provides a mechanism to
-<strong>temporarily</strong> gain "SPECIAL" or "OPERATIONS" attributes allowing the caller to perfrom some actions normally not allowed by SAF.</p>
+<p>On the <i>newer</i> *nix platforms it's a common thing to "su"
+before altering 'critical' settings. The module presented in
+<a href="https://github.com/zdevops/zdosu">this repository</a> does
+somewhat of the same thing. It provides a mechanism to
+<strong>temporarily</strong> gain "SPECIAL" or "OPERATIONS"
+attributes allowing the caller to perfrom some actions normally not
+allowed by SAF.</p>
 <h3>...this stuff is ancient</h3>
-<p>This functionality has been about since
-the start of time (epoch-wise at least I'd say) and we at zdevops.com are by no means trying to claim credit for it. We're not dropping any names here, but references to code like this were made at the turn of the century. This data is still available at the CBT site. If you really start searching I willing to bet you will find some actual 'punch-cards' with code like this....
-We're merely expanding and sharing things thought of by others because, quite frankly, we don't want to see this
-information lost. And judging by the ever increasing average age of the Mainframe Systems Programmers chances are this knowledge
-might get lost in time forever.</p>
+<p>This functionality has been about since the start of time
+(epoch-wise at least I'd say) and we at zdevops.com are by no means
+trying to claim credit for it. We're not dropping any names here,
+but references to code like this were made at the turn of the
+century. This data is still available at the CBT site. If you
+really start searching I willing to bet you will find some actual
+'punch-cards' with code like this.... We're merely expanding and
+sharing things thought of by others because, quite frankly, we
+don't want to see this information lost. And judging by the ever
+increasing average age of the Mainframe Systems Programmers chances
+are this knowledge might get lost in time forever.</p>
 <h2>What does it do?</h2>
-Basically this module will add or remove "SPECIAL" or "OPERATIONS" attributes from your 'current session'.
-Because of the extreme consequences this might have RACF is used to permit 
-usage of this module. Without the proper PERMIT this program does virtually less than  
-<a href="http://en.wikipedia.org/wiki/IEFBR14" target="_blank">IEFBR14</a>.
-With the proper authorization however, this module will grant the caller with the powers of 
-"SPECIAL" and/or "OPERATIONS". And we all know the famous Stan Lee quote when it comes to
-"great powers".
-</p>
-
+Basically this module will add or remove "SPECIAL" or "OPERATIONS"
+attributes from your 'current session'. Because of the extreme
+consequences this might have RACF is used to permit usage of this
+module. Without the proper PERMIT this program does virtually less
+than <a href="http://en.wikipedia.org/wiki/IEFBR14" target=
+"_blank">IEFBR14</a>. With the proper authorization however, this
+module will grant the caller with the powers of "SPECIAL" and/or
+"OPERATIONS". And we all know the famous Stan Lee quote when it
+comes to "great powers". <br>
+<br>
+ 
 <h2>How do I get this running?</h2>
-Hold your horses there. Before you can even start 'installing' and using this module
-there are a couple of requirements that need to be fullfilled before you can start:
+Hold your horses there. Before you can even start 'installing' and
+using this module there are a couple of requirements that need to
+be fullfilled before you can start: 
 <ul>
-	<li><strong>Are you sure you want to implement this?</strong><br />
-	You might want to talk about this with your manager, your CEO/CFO/CTO or even your security guys.
-	This 'tool' potentially creates an enourmous back-door into your sites security mechanisms. 
-	We know it's only with good intent, but it wouldn't hurt to have some 'managerial backing' on this.</li>
-	<li><strong>Access to SPECIAL</strong></br />
-	Due to the nature of this module (it does alter storage in KEY ZERO) it
-	needs to run in <a href="http://en.wikipedia.org/wiki/Supervisor_Call_instruction" target="_blank">Supervisor State</a>, hence it
-	needs to be compiled with AC(1) requiring you to be "SPECIAL" in order to do so.
-	Furthermore, the module needs to reside in an "APF Authorized library" (you can google that one yourself). These libraries are
-	mostly well guarded by various security settings.</li> 
-	<li><strong>RACF</strong><br />
-	This module has been coded with RACF in mind. If your shop uses "TopSecret" or "ACF2" it will not run.
-	The good thing about open-sourcing this module is, there might be someone out there running ACF2 and
-	altering the source so it will work with ACF2 too.</li>
-	<li><strong>SMP/e</strong><br />
-	In order to 'install' this feature you need to have some basic SMP/e knwoledge as this module is
-	provided as a 'USERMOD'.</li> 
-</ol>
-</ul>
+<li><strong>Are you sure you want to implement this?</strong><br>
+ You might want to talk about this with your manager, your
+CEO/CFO/CTO or even your security guys. This 'tool' potentially
+creates an enourmous back-door into your sites security mechanisms.
+We know it's only with good intent, but it wouldn't hurt to have
+some 'managerial backing' on this.</li>
+<li><strong>Access to SPECIAL</strong><br>
+ Due to the nature of this module (it does alter storage in KEY
+ZERO) it needs to run in <a href=
+"http://en.wikipedia.org/wiki/Supervisor_Call_instruction"
+   target="_blank">Supervisor State</a>, hence it needs to be
+   compiled with AC(1) requiring you to be "SPECIAL" in order to do
+   so. Furthermore, the module needs to reside in an "APF
+   Authorized library" (you can google that one yourself). These
+   libraries are mostly well guarded by various security
+   settings.</li>
+<li><strong>RACF</strong><br>
+ This module has been coded with RACF in mind. If your shop uses
+"TopSecret" or "ACF2" it will not run. The good thing about
+open-sourcing this module is, there might be someone out there
+running ACF2 and altering the source so it will work with ACF2
+too.</li>
+<li><strong>SMP/e</strong><br>
+ In order to 'install' this feature you need to have some basic
+SMP/e knwoledge as this module is provided as a
+'USERMOD'.</li></ul>
 <h2>Installing via SMP/e</h2>
-<p>Head on over to our repository on github and download ZDO1207 from the SMPE directory. Don't worry, we will hardly release more than one USERMOD per month, so you're save with the naming convention we use. Once you've downloaded the USERMOD you need to upload it to your Mainframe. </p>
-<p>Once uploaded to your Mainframe (make sure to send it ASCII, and place it in FB 80 dataset) you need to RECEIVE and APPLY it.</p>
+<p>Head on over to our repository on github and download ZDO1207
+from the SMPE directory. Don't worry, we will hardly release more
+than one USERMOD per month, so you're save with the naming
+convention we use. Once you've downloaded the USERMOD you need to
+upload it to your Mainframe.</p>
+<p>Once uploaded to your Mainframe (make sure to send it ASCII, and
+place it in FB 80 dataset) you need to RECEIVE and APPLY it.</p>
 <h3>Performing the receive</h3>
-<p>For some of us there are no secrets within SMP/e, others just copy and paste 
-from existing jobs. To make sure this 'documentation' is as complete as possible we present you with the following JCL.</p>
-<pre><code>//S1          EXEC PGM=GIMSMP,
+<p>For some of us there are no secrets within SMP/e, others just
+copy and paste from existing jobs. To make sure this
+'documentation' is as complete as possible we present you with the
+following JCL.</p>
+<pre>
+<code>//S1          EXEC PGM=GIMSMP,
 //            PARM='PROCESS=WAIT',
 //            REGION=0M,
 //            DYNAMNBR=120
@@ -89,14 +164,20 @@ from existing jobs. To make sure this 'documentation' is as complete as possible
   RECEIVE SYSMODS SELECT(ZDO1207).
 //SMPPTFIN DD DSN=LOCATION.WHERE.YOU.UPLOADED,
 //            DISP=(SHR,KEEP) 
-</code></pre>
-<p>If all goes well, this job should return with messages like these :
-<pre><code>GIM22701I    RECEIVE PROCESSING WAS SUCCESSFUL FOR SYSMOD ZDO1207.
-GIM20501I    RECEIVE PROCESSING IS COMPLETE. THE HIGHEST RETURN CODE WAS 00.</code></pre>
-
+</code>
+</pre>
+<p>If all goes well, this job should return with messages like
+these :</p>
+<pre>
+<code>GIM22701I    RECEIVE PROCESSING WAS SUCCESSFUL FOR SYSMOD ZDO1207.
+GIM20501I    RECEIVE PROCESSING IS COMPLETE. THE HIGHEST RETURN CODE WAS 00.</code>
+</pre>
 <h3>Applying the usermod</h3>
-Once succesfully received all you need to do is APPLY the USERMOD. Yet again we need to put GIMSMP to work. The following JCL serves as an example.
-<pre><code>//S1          EXEC PGM=GIMSMP,
+Once succesfully received all you need to do is APPLY the USERMOD.
+Yet again we need to put GIMSMP to work. The following JCL serves
+as an example. 
+<pre>
+<code>//S1          EXEC PGM=GIMSMP,
 //            PARM='PROCESS=WAIT',
 //            REGION=0M,
 //            DYNAMNBR=120
@@ -105,27 +186,36 @@ Once succesfully received all you need to do is APPLY the USERMOD. Yet again we 
 //SMPCNTL  DD *
   SET BOUNDARY (TARGETZONE).
   APPLY SELECT(ZDO1207) RETRY(YES).
-</code></pre>
-Once applied your very own 'ZDOSU' will be present in SYS1.LINKLIB (or whatever you changed your LINKLIB DDDEF to in SMP/e). If you prefer to store this module at a different location, you can either change the USERMOD or use the source file (as provided in the repo) and build your own 'compile & link' JCL.</p>
+</code>
+</pre>
+Once applied your very own 'ZDOSU' will be present in SYS1.LINKLIB
+(or whatever you changed your LINKLIB DDDEF to in SMP/e). If you
+prefer to store this module at a different location, you can either
+change the USERMOD or use the source file (as provided in the repo)
+and build your own 'compile &amp; link' JCL.<br>
+<br>
+ 
 <h2>Allowing users or groups to execute the module</h2>
-<p>As stated, this module requires RACF authorization to perform it's magic.
-This 'functionality' is there for a reason. Without it any user(!!) could
-upgrade himself to become "SPECIAL". Because this just give us shivers down 
-our spine, we require users to have read to the 'ZDEVOPS.AUTH.*' profile  in the FACILITY class.
-In order to grant a user (or group) access to the module you need to PERMIT them to
-the resource. An example is shown below:
-<pre><code>/* Define the profile */
+<p>As stated, this module requires RACF authorization to perform
+it's magic. This 'functionality' is there for a reason. Without it
+any user(!!) could upgrade himself to become "SPECIAL". Because
+this just give us shivers down our spine, we require users to have
+read to the 'ZDEVOPS.AUTH.*' profile in the FACILITY class. In
+order to grant a user (or group) access to the module you need to
+PERMIT them to the resource. An example is shown below:</p>
+<pre>
+<code>/* Define the profile */
 RDEFINE FACILITY ZDEVOPS.AUTH.* UACC(NONE) 
 SETROPTS RACLIST(FACILITY) REFRESH 
 
 /* Permit a user/group and refresh */
 PERMIT ZDEVOPS.AUTH.* CLASS(FACILITY) ID(xxxx) ACC(READ) 
-SETROPTS RACLIST(FACILITY) REFRESH</code></pre>
-
+SETROPTS RACLIST(FACILITY) REFRESH</code>
+</pre>
 <h2>Usage</h2>
-ZDOSU can be used from within a batch job (JCL) and in TSO.
-
-<pre><code>//MYJOB       JOB,'Example job'
+ZDOSU can be used from within a batch job (JCL) and in TSO. 
+<pre>
+<code>//MYJOB       JOB,'Example job'
 //*           RUN A JOB WITH SPECIAL (SO WE CAN DO RACF AND THINGS)
 //STEP01 EXEC PGM=ZDOSU,PARM='SPECIAL'
 //*           THIS WILL SET SPECIAL BIT IN ACEE
@@ -135,26 +225,34 @@ ZDOSU can be used from within a batch job (JCL) and in TSO.
   ..
   .. add your RACF COMMANDS
   ..
-</code></pre>
-
-If you want to be able to call this module from within TSO make sure to 
-add the program to the authorized programs in your IKJTSOxx member.
-
-<pre><code>...
+</code>
+</pre>
+If you want to be able to call this module from within TSO make
+sure to add the program to the authorized programs in your IKJTSOxx
+member. 
+<pre>
+<code>...
 AUTHPGM NAMES(            /* AUTHORIZED PROGRAMS */ +
    ..                  +
    IRRUT100            +
    IRRUT200            +
    ZDOSU)                 /* ADD THIS LINE */
-</code></pre>
-
+</code>
+</pre>
 <h2>Messages and Logging</h2>
-Due to the potential dangerous effect as a result of using this module every invocation of the program will be logged in SYSLOG.
-
-This is message <strong>ZDOSU0000I : EXECUTION STARTED</strong>.<br />
-From SYSLOG one can determine the originating address space, providing you with a basic audit trail towards the executing user.</p>
-<p>There are however a couple more messages this module can generate. For completeness sake all of them are provided below.
-<pre><code><strong>ZDOSU0000I : EXECUTION STARTED</strong>
+Due to the potential dangerous effect as a result of using this
+module every invocation of the program will be logged in SYSLOG.
+This is message <strong>ZDOSU0000I : EXECUTION
+STARTED</strong>.<br>
+From SYSLOG one can determine the originating address space,
+providing you with a basic audit trail towards the executing
+user.<br>
+<br>
+ 
+<p>There are however a couple more messages this module can
+generate. For completeness sake all of them are provided below.</p>
+<pre>
+<code><strong>ZDOSU0000I : EXECUTION STARTED</strong>
 This message is written to SYSLOG only and indicates usage of the module.
 This happens regardless of success or failure. Provides basic audit trail.
 
@@ -173,18 +271,22 @@ has not been defined the module terminates with this message.
 
 <strong>ZDOSU3000E : USAGE NOT PERMITTED</strong>
 User has no access to ZDEVOPS.AUTH.* in FACILITY-class. Module terminates.
-</code></pre>
-<p>These are all the messages ZDOSU can potentially generate. It should serve as a 
-guide to using the module</p>
-
+</code>
+</pre>
+<p>These are all the messages ZDOSU can potentially generate. It
+should serve as a guide to using the module</p>
 <h3>Inside scoop</h3>
-So how is it done? ZDOSU is written in ASSEMBLY and therefore extremely awesome and efficient.
-You can easily head on over to the repository at GitHub and awe at the code there.
-Below you will find some snippets from the source. This will most likely be parsed succesfully by ASMA90, however it is not the not full version. We
-urge you always download sources from the GitHub repository.</p>
-
-<p>That being said, here's the code :<br />
-<pre><code>ZDOSU    CSECT
+So how is it done? ZDOSU is written in ASSEMBLY and therefore
+extremely awesome and efficient. You can easily head on over to the
+repository at GitHub and awe at the code there. Below you will find
+some snippets from the source. This will most likely be parsed
+succesfully by ASMA90, however it is not the not full version. We
+urge you always download sources from the GitHub repository.<br>
+<br>
+ 
+<p>That being said, here's the code :</p>
+<pre>
+<code>ZDOSU    CSECT
          BAKR  14,0                    PUSH REGISTERS
          LR    12,15                   LOAD ENTRY ADDRESS INTO R12
          USING ZDOSU,12                ESTABLISH ADDRESSABILITY
@@ -213,13 +315,30 @@ WA       DS    CL512
 ENTITYX  DC    H'0',H'14',C'ZDEVOPS.'
 RESSUF   DC    CL5'AUTH.*'
          END   ZDOSU
-</code></pre>
+</code>
+</pre>
 <h2>Wrapping it up</h2>
-<p>Seeing as you've read all the way past the source-code we will get a bit more nerdy on the whole z/OS thing. Every address space succesfully executing ZDOSU (with PARM='SPECIAL') will have it's "SPECIAL" flag waving in the wind. There's virtually nothing this address space cannot do......</p>
-<p>By walking down the ASXB tree we can end up at the ACEE and flip some bits in that area.</p>
-<p>Before the program decides to flip some bits, it first issues a RACROUTE to test if the current user has READ on ZDEVOPS.AUTH.* in the facility class. It also checks if there's an argument of at least 6 bytes (SPEC,OPER,NOSPEC,NOOPER). And even before all this has happend a message was written to SYSLOG (route code 9) providing information for an audit trail regarding invocations of the progam. After that, it's a piece of pie to flip the appropriate bits.</p>
-<p>So there you go, instant SPECIAL for your Mainframe environment. Make sure to use and implement this 'tool' with the appropriate care. We for one love using this on our RD4Z:UT environment. It let's us work on the system as a 'regular' user yet giving us the powers to instantly add (or remove) certain pesky security settings without the constant dread of being 'SPECIAL' all the time.</p>
-
+<p>Seeing as you've read all the way past the source-code we will
+get a bit more nerdy on the whole z/OS thing. Every address space
+succesfully executing ZDOSU (with PARM='SPECIAL') will have it's
+"SPECIAL" flag waving in the wind. There's virtually nothing this
+address space cannot do......</p>
+<p>By walking down the ASXB tree we can end up at the ACEE and flip
+some bits in that area.</p>
+<p>Before the program decides to flip some bits, it first issues a
+RACROUTE to test if the current user has READ on ZDEVOPS.AUTH.* in
+the facility class. It also checks if there's an argument of at
+least 6 bytes (SPEC,OPER,NOSPEC,NOOPER). And even before all this
+has happend a message was written to SYSLOG (route code 9)
+providing information for an audit trail regarding invocations of
+the progam. After that, it's a piece of pie to flip the appropriate
+bits.</p>
+<p>So there you go, instant SPECIAL for your Mainframe environment.
+Make sure to use and implement this 'tool' with the appropriate
+care. We for one love using this on our RD4Z:UT environment. It
+let's us work on the system as a 'regular' user yet giving us the
+powers to instantly add (or remove) certain pesky security settings
+without the constant dread of being 'SPECIAL' all the time.</p>
 <p>Feel free to leave your comments below</p>
 <script type="text/javascript">
             var disqus_shortname = 'zdosubyzdevops';
@@ -229,30 +348,35 @@ RESSUF   DC    CL5'AUTH.*'
                 dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
                 (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
             })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-        
-	<script type="text/javascript">
+</script> <noscript>Please enable JavaScript to view the
+   <a href="http://disqus.com/?ref_noscript">comments powered by
+   Disqus.</a></noscript> <a href="http://disqus.com" class=
+   "dsq-brlink">comments powered by <span class=
+   "logo-disqus">Disqus</span></a> <script type="text/javascript">
 
-		  var _gaq = _gaq || [];
-		    _gaq.push(['_setAccount', 'UA-33162285-1']);
-		      _gaq.push(['_trackPageview']);
+                  var _gaq = _gaq || [];
+                    _gaq.push(['_setAccount', 'UA-33162285-1']);
+                      _gaq.push(['_trackPageview']);
 
-			    (function() {
-			    	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-			    	        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-			    	            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-			    	              })();
+                            (function() {
+                                    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                                        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                                            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+                                              })();
 
-							  </script>
-<br /><br /><br />
+</script><br>
+<br>
+<br>
 <div id="disqus_thread"></div>
-<p><small>
-	  This GitHub repository is part of a project maintained by <a href="http://zdevops.com">zdevops.com</a>. This documentation is proudly 
-        hosted on GitHub Pages. Theme based on work by <a href="https://github.com/orderedlist">orderedlist</a>.We do not accept any liability as a result of implementing this functionalty. You have been warned.............<br />
-		</small></p> 
-    <script src="javascripts/scale.fix.js"></script>
-</p>
-  </body>
+<p><small>This GitHub repository is part of a project maintained by
+<a href="http://zdevops.com">zdevops.com</a>. This documentation is
+proudly hosted on GitHub Pages. Theme based on work by <a href=
+"https://github.com/orderedlist">orderedlist</a>.We do not accept
+any liability as a result of implementing this functionalty. You
+have been warned.............<br></small></p>
+<script src="javascripts/scale.fix.js" type="text/javascript">
+</script> <br>
+<br>
+  </div>
+</body>
 </html>
