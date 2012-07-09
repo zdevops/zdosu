@@ -69,8 +69,7 @@ there are a couple of requirements that need to be fullfilled before you can sta
 	altering the source so it will work with ACF2 too.</li>
 	<li><strong>SMP/e</strong><br />
 	In order to 'install' this feature you need to have some basic SMP/e knwoledge as this module is
-	provided as a 'USERMOD'. We do also provide you with the source (scroll down) so you can build it
-	yourself, outside of SMP/e. (example JCL is provided).</li>
+	provided as a 'USERMOD'.</li> 
 </ol>
 </ul>
 <h2>Installing via SMP/e</h2>
@@ -108,10 +107,6 @@ Once succesfully received all you need to do is APPLY the USERMOD. Yet again we 
   APPLY SELECT(ZDO1207) RETRY(YES).
 </code></pre>
 Once applied your very own 'ZDOSU' will be present in SYS1.LINKLIB (or whatever you changed your LINKLIB DDDEF to in SMP/e). If you prefer to store this module at a different location, you can either change the USERMOD or use the 'manual installation' via JCL as described below.</p>
-<h2>Installing via JCL</h2>
-<p>Again, head on over to our repository on GitHub and this time download INSTALL from the JCL directory and zdosu from the SRCE directory.
-Upload the pair of them to your Mainframe. Make sure to add a jobcard to the INSTALL JCL and change the location of the source. If you like, you can change the location this module will be stored too.</p>
-
 <h2>Allowing users or groups to execute the module</h2>
 <p>As stated, this module requires RACF authorization to perform it's magic.
 This 'functionality' is there for a reason. Without it any user(!!) could
